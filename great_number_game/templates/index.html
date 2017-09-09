@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>The Great Number Game</title>
+    <link href="./static/style.css" rel="stylesheet" type="text/css">
+    <style media="screen">
+      .loss{
+        width: 100px;
+        height: 50px;
+        background-color: red;
+        padding: 50px;
+        text-align: middle;
+        color: white;
+      }
+      .win{
+        width: 125px;
+        height: 125px;
+        background-color: green;
+        padding: 10px;
+        text-align: middle;
+        color: white;
+        align-content: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to the Great Number Game</h1>
+      <p>I am thinking of a number between 1 and 100</p>
+      <p>Take a guess!</p>
+      {%if test == 'start'%}
+      <form action="/guess" method="post">
+        <input id = 'row' type="text" name="guess">
+        <input id = 'row' type="submit" value="submit">
+      </form>
+      {%elif test == 'high'%}
+      <h2 class = 'loss'>Too high!</h2>
+      <form action="/guess" method="post">
+        <input id = 'row' type="number" name="guess">
+        <input id = 'row' type="submit" value="submit">
+      </form>
+      {%elif test == 'low'%}
+      <h2 class = 'loss'>Too low!</h2>
+      <form action="/guess" method="post">
+        <input id = 'row' type="number" name="guess">
+        <input id = 'row' type="submit" value="submit">
+      </form>
+      {%elif test == 'equal'%}
+      <div class = 'win'>
+        <h3>{{computer}} was the number!</h3>
+        <form action="/again" method="post">
+          <input id = 'row' type="submit" value="again">
+        </form>
+      </div>
+      {%endif%}
+    </div>
+  </body>
+</html>

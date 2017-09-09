@@ -1,0 +1,21 @@
+*{
+  margin: none;
+  padding: none;
+  outline: solid green;
+}
+h1{
+  color: blue;
+}
+.loss{
+  outline: solid green;
+  border: solid black;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+.win{
+  border: solid black;
+  width: 100px;
+  height: 100px;
+  background-color: green;
+}
