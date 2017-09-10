@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, request, session, flash
 app = Flask(__name__)
+app.secret_key = "ReturnToPoohCorner"
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -7,11 +8,15 @@ def index():
 def process_form():
     if len(request.form['name'])<1:
         flash('Name cannot be empty')
+        if len(request.form['comment'])<1:
+            flash('Comment cannot be empty')
+        elif len(request.form['comment'])>120:
+            flash('Comment cannot exceed 120 characters')
         return redirect('/')
     elif len(request.form['comment'])<1:
         flash('Comment cannot be empty')
         return redirect('/')
-    elif len(comment)>120:
+    elif len(request.form['comment'])>120:
         flash('Comment cannot exceed 120 characters')
         return redirect('/')
     else:
