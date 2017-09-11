@@ -12,22 +12,26 @@ def index():
     return render_template('index.html', fname = session['fname'], lname = session['lname'], email = session['email'], test = session['testy'])
 @app.route('/process', methods=['POST'])
 def process():
-    session['fname'] = request.form['fname']
-    session['lname'] = request.form['lname']
-    session['email'] = request.form['email']
     session['password'] = request.form['password']
     session['confirmpw'] = request.form['confirmpw']
     session['testy'] = True
     session['verify'] = True
     if len(request.form['fname']) < 1:
+        session['fname'] = request.form['fname']
         session['verify'] = False
         flash('First Name required')
+    else:
+        session['fname'] = request.form['fname']
     if len(request.form['lname']) < 1:
         session['verify'] = False
         flash('Last Name required')
+    else:
+        session['lname'] = request.form['lname']
     if len(request.form['email']) < 1:
         session['verify'] = False
         flash('Email required')
+    else:
+        session['email'] = request.form['email']
     if len(request.form['password']) < 1:
         session['verify'] = False
         flash('Password required')
